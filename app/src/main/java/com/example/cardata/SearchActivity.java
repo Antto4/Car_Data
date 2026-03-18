@@ -42,7 +42,7 @@ public class SearchActivity extends AppCompatActivity {
             String yearStr = yearEdit.getText().toString().trim();
 
             if (city.isEmpty()) {
-                statusText.setText("Search failed: City field cannot be empty");
+                statusText.setText("Haku epäonnistui: Kaupunki ei voi olla tyhjä");
                 return;
             }
 
@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
                 int year = Integer.parseInt(yearStr);
                 getData(this, city, year);
             } catch (NumberFormatException e) {
-                statusText.setText("Search failed: Year field must be a number");
+                statusText.setText("Haku epäonnistui: Vuosi pitää olla numero");
             }
         });
 
@@ -69,7 +69,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void getData(Context context, String city, int year) {
-        statusText.setText("Searching");
+        statusText.setText("Haetaan");
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
         executor.execute(() -> {
@@ -108,7 +108,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 if (areaCode == null) {
-                    runOnUiThread(() -> statusText.setText("Search failed: No area was found"));
+                    runOnUiThread(() -> statusText.setText("Haku epäonnistui: Aluetta ei löytynyt"));
                     return;
                 }
 
@@ -156,10 +156,10 @@ public class SearchActivity extends AppCompatActivity {
                     storage.addCarData(new CarData(ajoneuvoTyypit[i], amount));
                 }
 
-                runOnUiThread(() -> statusText.setText("Search was succesful"));
+                runOnUiThread(() -> statusText.setText("Haku onnistui"));
 
             } catch (Exception e) {
-                runOnUiThread(() -> statusText.setText("Search failed. Try different values."));
+                runOnUiThread(() -> statusText.setText("Haku epäonnistui, kaupunkia ei ole olemassa tai se on kirjoitettu väärin."));
             }
         });
     }

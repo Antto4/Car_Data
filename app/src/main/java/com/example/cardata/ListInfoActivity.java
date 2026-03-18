@@ -22,8 +22,8 @@ public class ListInfoActivity extends AppCompatActivity {
 
         CarDataStorage storage = CarDataStorage.getInstance();
 
-        cityText.setText("City: " + storage.getCity());
-        yearText.setText("Year: " + storage.getYear());
+        cityText.setText("Kaupunki: " + storage.getCity());
+        yearText.setText("Vuosi: " + storage.getYear());
 
         StringBuilder infoBuilder = new StringBuilder();
         int totalCars = 0;
@@ -35,9 +35,9 @@ public class ListInfoActivity extends AppCompatActivity {
         }
 
         if (dataList.isEmpty()) {
-            infoBuilder.append("No data.\n");
+            infoBuilder.append("Ei tietoja saatavilla.\n");
         } else {
-            infoBuilder.append("\nTotal amount: ").append(totalCars);
+            infoBuilder.append("\nKOKONAISMÄÄRÄ: ").append(totalCars);
         }
 
         carInfoText.setText(infoBuilder.toString());
